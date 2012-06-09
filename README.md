@@ -15,27 +15,41 @@ To build Tonido Shell, you must have [node.js](https://nodejs.org "node.js") ins
 
 After that you need the jshint, node-cssmin, and uglify-js modules installed.  You can install them from the root of the project by using npm.
 
-    npm install jshint
+```
+npm install jshint
+```
 
-    npm install cssmin
+```
+npm install cssmin
+```
 
-    npm install uglify-js
+```
+npm install uglify-js
+```
 
 After that you can build/package by using:
 
-    node make.js
+```
+node make.js
+```
 
 You can also build the package without compression for debugging.
 
-    node make.js -d
+```
+node make.js -d
+```
 
 If you have a stable version of Tonido Shell installed, but want to test an unstable version at the same time, you can install a develpment version side by side on your Tonido device by using the experimental option.  This will create a package called **devshell** that can be installed on the your Tonido device next to the **tonidoshell** package.
 
-    node make.js -e
+```
+node make.js -e
+```
 
 Tonido Shell uses the unaltered Ace Editor.  In order to have Ace Editor included, you can clone https://github.com/ajaxorg/ace-builds into ```<project root>/ace```.
 
-   git clone https://github.com/ajaxorg/ace-builds ace
+```
+git clone https://github.com/ajaxorg/ace-builds ace
+```
 
 Alternatively, you grab the latest source from https://github.com/ajaxorg/ace and build it placing the build content into ```<project root>/ace```.
 

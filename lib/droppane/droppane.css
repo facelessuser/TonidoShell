@@ -1,0 +1,55 @@
+/*
+    droppane.js
+    dropdown pane
+    Copyright 2010 Isaac Muse
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+div.drop_pane_common {
+    background:transparent;
+    margin:auto auto;
+    padding:0px;
+    width:100%;
+    position:absolute;
+    left:0;
+}
+
+div.drop_pane_detect {
+    height:12px;
+    top:0;
+}
+
+div.drop_pane {
+    text-align:center;
+    height:24px;
+    top:-24px;
+}
+
+div.drop_pane_trans {
+    width:100%;
+    height:24px;
+    background:black;
+    opacity:.80;
+    filter:alpha(opacity=80);
+}
+
+div.drop_pane_content {
+    width:100%;
+    height:24px;
+    background:transparent;
+    position:relative;
+    top:-24px;
+}

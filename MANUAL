@@ -1,0 +1,221 @@
+Tonido Shell User Manual 1.3.2
+==============================
+
+Introduction
+============
+Tonido Shell is web based faux terminal.  It provides basic terminal
+functionality without having to SSH into your Tonido Plug.  It also provides
+file upload and download capability.
+
+Tonido Shell's is wrapped around Martin Geisler's PHP Shell 2.1 and interfaces
+with it to execute commands and return general shell info.  I have fixed a
+number of bugs in the PHP Shell core.  The Tonido Shell UI provides a pleasant
+user interface and provides access to downloading/uploading/editing files, and
+tweaking/enhancing the look and feel of the terminal.
+
+If you find any bugs, you can post them in the forums at tonido.com/forum, or
+you can contact me directly by email <isaacmuse@gmail.com>.
+
+A lot of work has gone into this Tonido app.  If you enjoy the work done here
+and would like to donate to support future work, select the donate button in
+the about dialog under the "Help" menu item.
+
+Additional documentation from the original PHP Shell can be found in the
+"document" folder in the plugins root folder.
+
+Limitations
+===========
+
+There are some limitations on what kind of commands you can run.  You cannot
+start graphical programs or any service or command that requres user interaction.
+Things like nano, vi, etc. will not work, but some of these commands have been
+hijacked (like vi) to provide an alternative way to get the same functionality.
+All programs have to be strictly command line programs, and they will have no
+chance of getting user input after they have been launched.
+
+Commands should terminate within 30 seconds, as this is the default
+time-limit imposed on all PHP scripts, to prevent them from running in an
+infinite loop.  This 30 second limit may vary based on your PHP settings.
+Tonido Shell does provide a way to send commands that will take longer than 30
+seconds, but you will get no input on when they are finished.  Please read on in
+the manual for more info in regards to this.
+
+But you can rely on all the normal shell-functionality, like pipes, output and
+input redirection, etc...  (There is no <tab>-completion, though)
+
+Features
+========
+
+1. Terminate session - you can close your current session (clear history, clear
+   screen, and reset session) by selecting File->Exit from the menu.
+   Alternatively, you can press the window close button or enter the "exit" on
+   the command line.
+
+2. Customize colors - You can customize the titel bar background, title bar
+   text, terminal background, and terminal text colors.  You can select custom
+   color presets by navigating the menu to Settings->Change Colors.  You can
+   also select colors not found in the presets by choosing the custom option
+   under the respective color menu.  If you prefer a transparent terminal, you
+   can select the transparent color option for Terminal Colors.  A dialog will
+   be displayed allowing you to pick the transparent image color of your choice.
+   You can add your own transparent tints to tonidoshell/ui/term.
+
+3. Disable/Enable Response - Tonido shell passes commands to the actual server
+   through PHP and then captures the response and/or errors form the server.
+   Because commands are being executed through PHP, they are limited to PHP's
+   execution time out (usually 30 seconds).  Tonido shell executes commands and
+   waits for the response; if it never gets a response, it keeps waiting.  You
+   can disable waiting for response by clicking the 'R' icon in the status bar,
+   or by select Settings->Disable Response.  It can be enabled the same way.
+   Linux\Mac Users: Essentially you can do this manually by executing commands
+   wrapped in the following code "(your command(s)) > /dev/null 2> /dev/null."
+   You can also redirect the output to a file instead of /dev/null.
+
+4. Expand output - You can expand the output into its own window for easy copy
+   and paste.  This is accomplished by selecting File->Expand Output from the
+   menu.  You can also simply double click the output and the expanded output
+   window will be opened as well.
+
+5. Clear output - To clear the output buffer, simply enter the command "clear"
+   or "cls" (cls is for those windows users).
+
+6. Upload files - You can launch the upload file dialog by selecting
+   File->Upload File(s) from the menu.  You can also launch the dialog by
+   entering "upload" on the command lineYou can add more file inputs by
+   selecting the "+" button or remove file inputs by selecting the "X" button.
+   If you would like to extract zip files on upload, simply make sure the
+   "Extract Zip Files on Upload"? is checked.
+
+7. Download files - You can launch the download file dialog by selecting
+   File->Download File(s) from the menu.  You can also launch the download
+   dialog by entering "download" on the command line When the dialog appears,
+   simply click file or folder you want to download.
+
+8. Edit files - You can begin editting a file by selecting Edit->Edit Text
+   Document from the menu.  You can also enter "edit" or "vi" on the command
+   line to launch the edit dialog.  A dialog will open to allow you to pick a
+   text file to edit. Windows hosts will save files with windows carriage
+   retunrs, all other hosts will save with unix carriage returns.  All Hosts
+   save files as UTF8.  There could be issues some HTML code.  The editor may
+   have a difficult time correctly savig some HTML special characters.  This is
+   due to a limitation of editing text in a textarea tag.  You can also create
+   new files by selecting Edit->New Text Document from the menu or by entering
+   the command "mktxt".
+
+9. Change backgrounds - You can select different background tiles by selecting
+   Settings->Change Background.  A dialog will appear allowing you to select
+   a background tile.  You can upload your own custom background tiles to
+   tonidoshell/ui/background.
+
+10. Refocus on the input line - if your cursor no longer is focused on the input
+    line, it can be refocused by clicking it or pressing Ctrl+Shift+I.
+
+11. Breadcrumb Bar - The breadcrumb bar shows your current path broken up into
+    clickable links to navigate anywhere in the current path.  It can be toggled
+    on and off by pressing Ctrl+Shift+B.  If you would like to always show or
+    always hide by default, this option can be accesed under the "View".
+
+12. Session Bar - The session bar shows your current allowed sessions.  It can
+    be toggled on and off by pressing Ctrl+Shift+S.  If you would like to always
+    show or always hide by default, this option can be accesed under the "View".
+    You can enable more or less sessions from the menu settings->Change Number
+    of Sessions.  You can have a minimum of 1 and a maximum of 9.  Shortcuts to
+    the sessions are automatically created and can be accessed by pressing
+    Ctrl+(1-9).
+
+13. Scroll Output - The output can be scrolled by dragging the scrollbar or by
+    pressing the "Up" or "Down" arrow key while the output is focused.  This is
+    good, but sometimes you want to scroll without having to leave the command
+    line.  This can be done anywhere (including the command line) by pressing
+    Ctrl+(Up or Down).
+
+14. Leave/Show Embedded View - Sometimes you want to show the application full
+    screen.  This can be accomplished by hovering your mouse at the top edge of
+    the window.  A drop-down pane will appear and allow you to select full
+    screen.  This also works in the reverse if you would like to see the
+    embedded UI again.
+
+15. Insert Shellmarks - Shellmarks are like using aliases except you can insert
+    them anywhere in your command instead of just at the start.  To insert the
+    shellmark notation, press Ctrl+Shift+M.  After that you can enter your
+    shellmark alias.  Example: <sm: alias>.
+
+16. Shortcut Manager - If you are unhappy with the current shortcuts of Tonido
+    Shell, you can change them with the shortcut manager found in the menu at
+    Settings->Change Shortcuts.  You can change most of them.
+
+17. Disable/Enable Text Drop Shadows - If you do not like dropshadows on terminal
+    input and output, you can change it by goint to to Settings->Hide/Show Text Drop
+    Shadow in the menu.
+
+Internal Commands: command line usage
+=====================================
+mktxt:
+    Opens editor with new empty file for editing.
+
+    Syntax
+        mktxt [File]...
+
+edit or vi:
+    Opens an existing file for editing. A gui file selector dialog
+    is opened if no file path is provided.
+
+    Syntax
+        edit [File]...
+
+clear or cls:
+    Clears terminal output.
+
+    Syntax
+        clear
+
+download
+    Downloads files and/or folders. Opens a gui dialog if no file
+    or folder is specified.
+
+    Syntax
+        download [Files]...
+
+upload
+    Opens a gui dialog for uploading files.
+
+    Syntax
+        upload [options]...
+    key
+        -admin         upload a file bypassng the Tonido API and use PHP instead
+                       limited to PHP timeout limit
+
+exit
+    Resets the current session.
+
+    Syntax
+        exit
+
+shellmarks
+    Allows the setting, deleting, or listing of shellmarks. Lists
+    all shellmarks if no options defined.
+
+    Syntax
+        shellmarks [options]... [symbol]... [comand(s)]...
+
+    key
+        -s            sets a shellmark with the specified [symbol]
+                      and [commnad(s)]
+
+        -d            deletes the specified [symbol] from the
+                      shellmark list
+
+aliases
+    Allows the setting, deleting, or listing of aliases.  Lists all
+    aliases if no options defined.
+
+    Syntax
+        aliases [options]... [symbol]... [comand(s)]...
+
+    key
+        -s            sets a alias with the specified [symbol] and
+                      [commnad(s)]
+
+        -d            deletes the specified [symbol] form the alias
+                      list
+

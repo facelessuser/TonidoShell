@@ -1,0 +1,107 @@
+{
+    "jslint" : {
+        // Settings
+        "passfail"      : false,  // Stop on first error.
+        "maxerr"        : 10,    // Maximum error before stopping.
+
+        // Predefined globals whom JSHint will ignore.
+        "browser"       : true,   // Standard browser globals e.g. `window`, `document`.
+
+        "node"          : false,
+        "rhino"         : false,
+        "couch"         : false,
+        "wsh"           : true,   // Windows Scripting Host.
+
+        "jquery"        : false,
+        "prototypejs"   : false,
+        "mootools"      : false,
+        "dojo"          : false,
+
+        "predef"        : [  // Custom globals.
+            //EasyJS defines
+            "$",
+            "easyJS",
+
+            //Other
+            "DOMParser"
+        ],
+
+        // Development.
+        "debug"         : false,  // Allow debugger statements e.g. browser breakpoints.
+        "devel"         : true,   // Allow developments statements e.g. `console.log();`.
+
+        // EcmaScript 5.
+        "es5"           : true,   // Allow EcmaScript 5 syntax.
+        "strict"        : true,   // Require `use strict` pragma  in every file.
+        "globalstrict"  : false,  // Allow global "use strict" (also enables 'strict').
+
+        // The Good Parts - Require
+        "curly"         : false,  // Require {} for every new block or scope.
+        "eqeqeq"        : false,  // Require triple equals i.e. `===`.
+        "immed"         : false,  // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
+        "newcap"        : true,   // Require capitalization of all constructor functions e.g. `new F()`.
+        "onevar"        : true,   // Require only one `var` statement per function.
+        "undef"         : true,   // Require all non-global variables be declared before they are used.
+
+        // The Good Parts - Tolerate
+        "asi"           : false,  // Tolerate Automatic Semicolon Insertion (no semicolons).
+        "laxbreak"      : false,  // Tolerate unsafe line breaks e.g. `return [\n] x` without semicolons.
+        "boss"          : true,   // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
+        "eqnull"        : true,   // Tolerate use of `== null`.
+        "evil"          : false,  // Tolerate use of `eval`.
+        "expr"          : false,  // Tolerate `ExpressionStatement` as Programs.
+        "forin"         : false,  // Tolerate `for in` loops without `hasOwnPrototype`.
+        "loopfunc"      : true,   // Tolerate functions to be defined within loops.
+        "regexdash"     : false,  // Tolerate unescaped last dash i.e. `[-...]`.
+        "scripturl"     : false,  // Tolerate script-targeted URLs.
+        "shadow"        : false,  // Tolerate re-define variables later in code e.g. `var x=1; x=2;`.
+        "sub"           : false,  // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`.
+        "supernew"      : false,  // Tolerate `new function () { ... };` and `new Object;`.
+
+        //The Good Parts - Prohibit
+        "bitwise"       : true,   // Prohibit bitwise operators (&, |, ^, etc.).
+        "latedef"       : true,   // Prohibit variable use before definition.
+        "noarg"         : true,   // Prohibit use of `arguments.caller` and `arguments.callee`.
+        "noempty"       : true,   // Prohipit use of empty blocks.
+        "nonew"         : true,   // Prohibit use of constructors for side-effects.
+        "regexp"        : false,  // Prohibit `.` and `[^...]` in regular expressions.
+
+        // Personal styling prefrences.
+        "nomen"         : false,  // Prohibit use of initial or trailing underbars in names.
+        "plusplus"      : false,  // Prohibit use of `++` & `--`.
+        "trailing"      : true,   // Prohibit trailing whitespaces.
+        "white"         : false   // Prohibit violations against strict whitespace and indentation rules.
+    },
+
+    "cleancss" : {
+        "preserve_copyright": true,
+        "data_uri": true
+    },
+
+    "uglifyjs" : {
+        "preserve_copyright": true,
+        "strict_semicolons" : false,
+        "mangle_options" : {
+            "mangle"       : true,
+            "toplevel"     : false,
+            "defines"      : {},
+            "except"       : null,
+            "no_functions" : false
+        },
+        "squeeze_options" : {
+            "make_seqs"  : true,
+            "dead_code"  : true,
+            "keep_comps" : true,
+            "unsafe"     : false
+        },
+        "codegen_options": {
+                "ascii_only": false,
+                "beautify": false,
+                "indent_level": 4,
+                "indent_start": 0,
+                "quote_keys": false,
+                "space_colon": false,
+                "inline_script": false
+        }
+    }
+}

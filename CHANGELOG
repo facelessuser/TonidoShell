@@ -1,0 +1,93 @@
+Tonido Shell Changelog
+======================
+2011-12-14 (1.3.2 release) Isaac Muse <isaacmuse@gmail.com>
+    -Allow for ".." at the beginning of a folder or file
+
+2011-12-6 (1.3.1 release) Isaac Muse <isaacmuse@gmail.com>
+    -BugFix: issue with latest Chrome and Opera and graphical dowloads
+    -CSS adjustments
+    -BugFix: issue where tr and td tag were swapped
+    -BugFix: issue where cancel event wasn't running when some dialogs got closed
+    -Add setting to disable text drop shadows
+
+2011-8-25 (1.3.0 release) Isaac Muse <isaacmuse@gmail.com>
+    -Add multiple sessions feature with session bar
+    -Add drop down pane for showing full screen or Tonido UI
+    -Add shortucts for scrolling up and down the output
+    -Add shortcuts for switching sessions
+    -Add true transparent terminal and remove old way
+    -New alpha channel on color picker dialogs
+    -Settings now stored in sqlite database
+    -Better resizing of terminal dialog
+    -BugFix: Modal dialog bug fixes
+    -BugFix: opaque busy dialogs on IE
+    -BugFix: unable to scroll up in edit box with arrow keys in IE
+    -UI tweaks
+    -added support for "~" as the home directory and "cd-" for change to last 
+     directory
+    -BugFix: issue where sometimes the embedded UI shows --> instead of / for root
+    -Downloads no longer opens empty windows
+
+2011-7-13 (1.2.5 release) Isaac Muse <isaacmuse@gmail.com>
+    -Added breadcrumb bar to navigate to folders in current path
+    -Added fade in and fade out animation effects to dialogs and enabled effects in IE
+    -Remove full path in title bar (no longer needed with breadcrumb bar, also not needed
+     if dual or tabbed sessions is added in the future)
+    -Added global shortcut for focusing on the input line
+    -Remove unneeded edit file name check
+    -Fixed manual
+    -Removed mobile safari shadow on command input.
+    -Removed padding on command input.
+    -Close button now has a single image rollover
+    -BugFix: Fixed opera key handling issues
+
+2011-4-20  (1.2.0 release) Isaac Muse <isaacmuse@gmail.com>
+    -Added parameters to Internal command line commands
+    -Upload via PHP with optional unzip on upload
+    -Aliases moved from config.php to sqlite db
+    -aliases can be set, deleted, listed from commandline
+    -added shellmarks in db
+    -shellmarks can be set, deleted, listed from commandline
+    -tweak graphics
+    -better maximizing of textbox dialog
+    -updated documents
+    -BugFix: Fix issue with debug dump recursion
+    -BugFix: Critical issue where new installs of Tonidoshell will fail
+    -BugFix: Fix windows stripping backslashes from saved text files
+
+2011-4-8   (1.1.5 release) Isaac Muse <isaacmuse@gmail.com>
+    -Better Error reporting
+    -BugFix: where some browsers were not word wrapping long strings without spaces
+    -Added back in the ability to launch internal command via command line (with AJAX this time)
+        -mktxt - open a new untitled text file in a simple text editor
+        -edit/vi - launch dialog to select file to edit in a simple text editor
+        -exit - kill current session (completely destroy session and start with clean slate)
+        -download - launch download dialog
+        -upload - launch upload dialog
+        -clear/cls - clear screen
+    -Exit command also available from menu or by selecting close button on window
+    -BugFix: Fixed minor JS errors exposed by handler
+    -Busy dialogs when loading gui file list
+    -Error dialogs if AJAX requests go bad
+    -Notifications when saving text files
+
+2011-3-27 (1.1.0 release) Isaac Muse <isaacmuse@gmail.com>
+    -New Error handling code
+    -Fixed and adjusted GUI CSS
+    -Add text file editing and creation
+    -Add folder zip and download
+    -Click to drop down menu
+    -Clean up code
+    -Added custom background support
+    -Add terminal transparency support
+    -Ignore commands when submitting settings
+    -cd with no directory now resolves to '/' for unix and current drive
+     for windows
+    -BugFix: Fix windows paths on change directory
+
+2011-2-13 (1.0.3 Initial Release) Isaac Muse <isaacmuse@gmail.com>
+    -Upload/download dialogs
+    -Color Customizations
+    -Windows support
+    -New GUI and graphics
+    -Built around PHP Shell 2.1

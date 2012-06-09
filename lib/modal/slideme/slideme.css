@@ -1,0 +1,50 @@
+/*
+    slideme.css
+    Copyright 2010 Isaac Muse
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+.slider {
+    position:relative;
+    margin:0px auto;
+    height:16px;
+    top:0px;
+    background:url(images/slide_c.png) repeat-x;
+}
+
+.slider .slider_left, .slider .slider_right{
+    position:absolute;
+    height:16px;
+    width:4px;
+}
+
+.slider .slider_left {
+    left:0px;
+    background:url(images/slide_l.png) no-repeat;
+}
+
+.slider .slider_right {
+    right:0px;
+    background:url(images/slide_r.png) no-repeat;
+}
+
+.slider .slider_knob {
+    position:relative;
+    top:0px;
+    left:-2px;
+    width:16px;
+    height:16px;
+    background:url(images/knob.png) no-repeat;
+}

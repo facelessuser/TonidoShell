@@ -1,0 +1,115 @@
+/*
+    breadcrumbs.css
+    stylesheel for breadcrumbs
+    Copyright 2010 Isaac Muse
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+div.crumbbar {
+    white-space: nowrap;
+    min-height:24px;
+    max-height:24px;
+    background:#E0E0E0;
+    float:left;
+}
+
+td.crumbscroller {
+    width:24px;
+    height:24px;
+}
+
+div.crumbscroller_arrow {
+    border-color: transparent black;
+    border-style: solid;
+    height: 0px;
+    width: 0px;
+}
+
+div.crumbscroller_arrow_right {
+    border-width: 6px 0px 6px 6px;
+}
+
+div.crumbscroller_arrow_left {
+    border-width: 6px 6px 6px 0px;
+}
+
+div.crumbscroller_wrap {
+    margin-top:6px;
+    width:8px;
+    height:18px;
+}
+
+div.crumbdiv {
+    overflow:hidden;
+    height:24px;
+}
+
+a.crumblink {
+    text-decoration:none;
+    outline: none;
+    color: #393939;
+    font: bold 16px/18px arial, helvetica, sans-serif;
+}
+
+td.crumbitem:hover a {
+    color: white;
+}
+
+td.crumbitem {
+    padding-left:10px;
+    padding-right:10px;
+    height:24px;
+}
+
+td.crumbspacer {
+    width:100%;
+}
+
+td.crumbdivider {
+    color:#C2C2C2;
+    font-weight:bold;
+}
+
+table.crumbtable, table.crumbtable * {
+    white-space: no-wrap;
+}
+
+/*generated from http://www.colorzilla.com/gradient-editor/ :saved me a lot of time*/
+td.crumbitem,
+td.crumbdivider,
+td.crumbscroller,
+td.crumbspacer {
+    background: rgb(249,245,244); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(249,245,244,1) 0%, rgba(196,196,196,1) 50%, rgba(165,165,165,1) 51%, rgba(198,198,198,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(249,245,244,1)), color-stop(50%,rgba(196,196,196,1)), color-stop(51%,rgba(165,165,165,1)), color-stop(100%,rgba(198,198,198,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(249,245,244,1) 0%,rgba(196,196,196,1) 50%,rgba(165,165,165,1) 51%,rgba(198,198,198,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(249,245,244,1) 0%,rgba(196,196,196,1) 50%,rgba(165,165,165,1) 51%,rgba(198,198,198,1) 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, rgba(249,245,244,1) 0%,rgba(196,196,196,1) 50%,rgba(165,165,165,1) 51%,rgba(198,198,198,1) 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f5f4', endColorstr='#c6c6c6',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(249,245,244,1) 0%,rgba(196,196,196,1) 50%,rgba(165,165,165,1) 51%,rgba(198,198,198,1) 100%); /* W3C */
+}
+
+td.crumbitem:hover,
+td.crumbscroller:hover {
+    background: rgb(208,206,206); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(208,206,206,1) 0%, rgba(165,165,165,1) 50%, rgba(139,139,139,1) 51%, rgba(166,166,166,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(208,206,206,1)), color-stop(50%,rgba(165,165,165,1)), color-stop(51%,rgba(139,139,139,1)), color-stop(100%,rgba(166,166,166,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(208,206,206,1) 0%,rgba(165,165,165,1) 50%,rgba(139,139,139,1) 51%,rgba(166,166,166,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(208,206,206,1) 0%,rgba(165,165,165,1) 50%,rgba(139,139,139,1) 51%,rgba(166,166,166,1) 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, rgba(208,206,206,1) 0%,rgba(165,165,165,1) 50%,rgba(139,139,139,1) 51%,rgba(166,166,166,1) 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0cece', endColorstr='#a6a6a6',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(208,206,206,1) 0%,rgba(165,165,165,1) 50%,rgba(139,139,139,1) 51%,rgba(166,166,166,1) 100%); /* W3C */
+}

@@ -1,0 +1,35 @@
+AUTHORS file for PHP Shell 3.0
+Copyright (C) 2000-2004 Martin Geisler <mgeisler@mgeisler.net>
+Licensed under the GNU GPL.  See the file COPYING for details.
+
+Original author of PHP Shell 2.1: Martin Geisler <mgeisler@mgeisler.net>
+
+Isaac Muse <isaacmuse@gmail.com>
+  Fixed Bugs and new features stripped out non critical code to create library
+
+Thanks goes to all these persons who have helped:
+
+richard@joffray.com
+  Fixed a problem the list of directories, if one accessed the
+  root-directory.
+
+Robert Niess <sturm@i-st.net>
+  Made me aware of a security hole in the handling of stderr-trapping.
+
+Gerry Calderhead <caldergf@everythingsucks.co.uk>
+  Patch for PHP 4.2.0 where register_globals are turned off.
+
+Jeremy Miller <JMiller@marketaxess.com>
+  Suggested that one could use Sudo from
+
+    http://www.courtesan.com/sudo/
+
+  to let PHP Shell execute code with different privileges than the
+  webserver.
+
+Michael Zech <keldrin@web.de>
+  Patch to make the stderr-checkbox remember it's state.
+
+Wolfgang Dautermann <wolfgang.dautermann@fh-joanneum.at>
+  Multiple patches, including the sorting of directory entries in the
+  drop down box.

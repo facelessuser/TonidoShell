@@ -1,0 +1,171 @@
+/*
+    tonidoshell.css
+    Style for the Tonido Shell UI
+    Copyright 2010 Isaac Muse
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+body {
+    font-family: sans-serif;
+    color: black;
+    background: white;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+div#mainWindow {
+    display: none;
+}
+
+.win_img_button {
+    vertical-align: middle;
+    border: none;
+}
+
+#winLogo {
+    padding-right: 0.2em;
+}
+
+div.win_frame {
+    margin: 13px;
+    -moz-box-shadow: 4px 4px 9px #000,1px 1px 10px #000;
+    -webkit-box-shadow: 4px 4px 9px #000,1px 1px 10px #000;
+    box-shadow: 4px 4px 9px #000,1px 1px 10px #000;
+}
+
+.win_frame table {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    width: 100%;
+}
+
+table.win_frame {
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+table.win_bar {
+    padding-top: 4px;
+}
+
+table.win_main {
+    table-layout: fixed;
+}
+
+td.win_title {
+    white-space: nowrap;
+}
+
+td#winTitleLeft {
+    width: 150px;
+}
+
+td#winTitleCenter {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td#winTitleRight {
+    width: 28px;
+}
+
+div#termSpacer {
+    width: 100%;
+}
+
+#terminal{
+    padding: 0;
+    margin: 0;
+}
+
+#termWrap {
+    background: transparent;
+    clear: both;
+    border: inset 2px #c2c2c2;
+    padding: 0;
+    margin: 0;
+}
+
+div.pre_wrap {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: auto auto;
+    padding: 0px;
+    -moz-box-shadow: inset 1px 1px 6px #000;
+    -webkit-box-shadow: inset 1px 1px 6px #000;
+    box-shadow: inset 1px 1px 6px #000
+}
+
+table.pre_wrap {
+    table-layout: fixed;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+pre.term_text {
+    white-space: -moz-pre-wrap !important; /* Mozilla-based browsers */
+    white-space: pre-wrap; /* CSS2.1 compliant */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /*Opera 7+ */
+}
+
+.term_text {
+    background: transparent;
+    font-size: 14px;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.term_text_shadow {
+    text-shadow: 1px 1px 3px #000;
+}
+
+#cmdCell {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+input#command {
+    padding: 0px;
+    background: transparent;
+    width: 100%;
+    border: none;
+    outline-width: 0;
+    outline: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.footer_bar {
+    color: black;
+    background: #E0E0E0;
+    padding: 0.1em;
+    font: bold 11px/16px arial, helvetica, sans-serif;
+}
+
+#statusCell.footer_bar {
+    width: 100%;
+}
+
+#toolCell.footer_bar {
+    width: 16px;
+}

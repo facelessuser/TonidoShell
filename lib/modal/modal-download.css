@@ -1,0 +1,83 @@
+/*
+    modal download default skin CSS
+    Copyright 2010 Isaac Muse
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+div.modal_down {
+    border:inset 2px #C2C2C2;
+}
+
+tr.modal_down {
+    background:#B0B0B0;
+}
+
+tr.modal_down td {
+    height: 16px;
+    color: white;
+}
+
+.modal_down_row1 {
+    height: 16px;
+    background:white;
+}
+
+.modal_down_row2 {
+    height: 16px;
+    background:#DDDDDD;
+}
+
+a.modal_down_buttons {
+    color:black;
+    background:none;
+}
+
+.modal_down_row:hover {
+    background:#B0B0B0;
+}
+
+div.modal_down {
+    margin:0px 20px;
+    overflow:auto;
+}
+
+table.modal_down {
+    padding:0px;
+    width:100%;
+}
+
+.modal_down_buttons {
+    border:none;
+}
+
+a.modal_down_buttons {
+    text-decoration:none;
+    outline: none;
+}
+
+a.modal_down_buttons image {
+    vertical-align:middle;
+    height:16px;
+    width:16px;
+}
+
+.modal_down_frame {
+    display:none;
+}
+
+.modal_down_size_cell {
+    padding:0px 10px;
+}

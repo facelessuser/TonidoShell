@@ -1,0 +1,161 @@
+/*
+    modal dialog default skin CSS
+    Copyright 2010 Isaac Muse
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+/*General Dialog*/
+.modal_T_L {
+    width: 4px;
+    height: 32px;
+    background: url(images/modalTLeft.png) top left;
+}
+
+.modal_T_R {
+    width: 4px;
+    height: 32px;
+    background: url(images/modalTRight.png) top left;
+}
+
+.modal_T_C {
+    height: 32px;
+    background: url(images/modalTCenter.png) top left repeat-x;
+}
+
+.modal_C_L {
+    width: 4px;
+    background: url(images/modalCLeft.png) top left repeat-y;
+}
+
+.modal_C_R {
+    width: 4px;
+    background: url(images/modalCRight.png) top left repeat-y;
+}
+
+.modal_C_C {
+    vertical-align:top !important;
+    font-family: sans-serif;
+    background:#E0E0E0;
+}
+
+.modal_B_L {
+    width: 4px;
+    height: 4px;
+    background: url(images/modalBLeft.png) top left;
+}
+
+.modal_B_R {
+    width: 4px;
+    height: 4px;
+    background: url(images/modalBRight.png) top left;
+}
+
+.modal_B_C {
+    height: 4px;
+    background: url(images/modalBCenter.png) top left repeat-x;
+}
+
+.modal_diag {
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: auto auto;
+    padding:0;
+    text-align:center;
+    -moz-box-shadow:4px 4px 9px #000,1px 1px 10px #000;
+    -webkit-box-shadow:4px 4px 9px #000,1px 1px 10px #000;
+    box-shadow:4px 4px 9px #000,1px 1px 10px #000;
+}
+
+.modal_maximize {
+    -moz-box-shadow:0 0 0 #000, 0 0 0 #000;
+    -webkit-box-shadow:0 0 0 #000, 0 0 0 #000;
+    box-shadow:0 0 0 #000, 0 0 0 #000;
+}
+
+table.modal_bar {
+    padding-top: 4px;
+    margin: 0;
+    border: none;
+    width:100%;
+    font-weight: bold;
+}
+
+td.modal_close {
+    width:28px;
+}
+
+td.modal_close {
+    white-space:nowrap;
+}
+
+a.modal_close {
+    display:block;
+    text-decoration:none;
+    outline:none;
+    height:28px;
+    width:28px;
+    border:none;
+    background: url(images/closebtn.png) no-repeat 0 0;
+}
+
+a.modal_close:hover {
+    background-position: 0 -28px;
+}
+
+.modal_badge {
+    border:none;
+    float:left;
+    width:48px;
+    height:48px;
+    margin:3px;
+}
+
+.modal_text {
+    white-space:nowrap;
+    margin-left:54px;
+    margin-bottom:16px;
+    margin-top:16px;
+    padding-right:20px;
+}
+
+.modal_block {
+    margin-top:1.25em;
+    margin-bottom:1.25em;
+}
+
+/*overlay*/
+.modal_overlay {
+    background-color: #000;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*prompt*/
+.modal_prompt {
+    width:100%;
+}
+
+.modal_prompt_box {
+    padding: 0 20px;
+}

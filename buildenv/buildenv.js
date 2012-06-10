@@ -24,6 +24,11 @@ var fs = require('fs'),
     path = require('path'),
     is = require('./lib/istype').is;
 
+function preserveCopyright(code) {
+    var m = code.match(/^(\/\*[^\*]*\*+(?:[^\/\*][^\*]*\*+)*\/|\s*\/\/(?:[^\r\n])*)/);
+    return ((m) ? m[0] + '\n' : '');
+}
+
 exports.merge = function (obj, defaults) {
     var index;
     if (is.undefined(obj)) obj = {};
@@ -106,11 +111,7 @@ exports.compileJS = function (files, dest, options) {
         code = fs.readFileSync(file, 'utf8');
 
         if (options.preferences.preserve_copyright && !options.debug) {
-            results = (function(comments) {
-                // Find first comment
-                var m = code.match(/^(\/\*[^\*]*\*+(?:[^\/\*][^\*]*\*+)*\/|\s*\/\/(?:[^\r\n])*)/);
-                return ((m) ? m[0] + '\n' : '');
-            })(code);
+            results = preserveCopyright(code);
         }
 
         destPath = path.normalize((is.function(dest)) ? dest(path.basename(file)) : path.join(dest, path.basename(file)));
@@ -174,10 +175,7 @@ exports.compileCSS = function (files, dest, options) {
         code = fs.readFileSync(file, 'utf8');
 
         if (options.preferences.preserve_copyright && !options.debug) {
-            results = (function(comments) {
-                var m = code.match(/^(\/\*[^\*]*\*+(?:[^\/\*][^\*]*\*+)*\/|\s*\/\/(?:[^\r\n])*)/);
-                return ((m) ? m[0] + '\n' : '');
-            })(code);
+            results = preserveCopyright(code);
         }
 
         if (options.preferences.data_uri) {

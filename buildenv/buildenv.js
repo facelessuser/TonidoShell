@@ -29,6 +29,27 @@ function preserveCopyright(code) {
     return ((m) ? m[0] + '\n' : '');
 }
 
+function imagesToDataURI(code, base) {
+    return code.replace(
+        /(url\()['"]?((?:[^\)]+?))['"]?(\))/g,
+        function ($0, $1, $2, $3){
+            var image = path.join(base, $2),
+                data, ext, uri;
+            if (path.existsSync(image)) {
+                try {
+                    console.log('    Converting image to data uri: ' + image + '...');
+                    ext = path.extname(image).replace('.', '').toLowerCase();
+                    data = fs.readFileSync(image, 'base64');
+                    uri = $1 + 'data:image/' + ext + ';base64,' + data + $3;
+                } catch (err) {
+                    uri = $0;
+                }
+            }
+            return uri;
+        }
+    );
+}
+
 exports.merge = function (obj, defaults) {
     var index;
     if (is.undefined(obj)) obj = {};
@@ -179,26 +200,7 @@ exports.compileCSS = function (files, dest, options) {
         }
 
         if (options.preferences.data_uri) {
-            code = (function(c, base) {
-                return code.replace(
-                    /(url\()['"]?((?:[^\)]+?))['"]?(\))/g,
-                    function ($0, $1, $2, $3){
-                        var image = path.join(base, $2),
-                            data, ext, uri;
-                        if (path.existsSync(image)) {
-                            try {
-                                console.log('    Converting image to data uri: ' + image + '...');
-                                ext = path.extname(image).replace('.', '').toLowerCase();
-                                data = fs.readFileSync(image, 'base64');
-                                uri = $1 + 'data:image/' + ext + ';base64,' + data + $3;
-                            } catch (err) {
-                                uri = $0;
-                            }
-                        }
-                        return uri;
-                    }
-                );
-            })(code, path.dirname(file));
+            code = imagesToDataURI(code, path.dirname(file));
         }
 
         destPath = (is.function(dest)) ? dest(path.basename(file)) : path.join(dest, path.basename(file));

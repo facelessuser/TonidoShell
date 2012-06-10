@@ -104,7 +104,7 @@ function dataUriReplace(file, graphics, find, replace){
 parseArgs(process.argv);
 
 console.log('Removing: ' + 'build/' + appName + ' build directory...');
-build.removeFiles(sfu.glob([appName + '_*.zip', appName], './build'));
+build.removeFiles(sfu.glob([appName + '_*.zip', appName], 'build'));
 
 build.makeDirs(
     [

@@ -157,7 +157,6 @@ exports.lintJS = function (files, options) {
 };
 
 exports.compileCSS = function (files, dest, options) {
-    // Does not work the same imported from node as it does called from the command line
     var pro = require('cssmin').cssmin;
     options = exports.merge(options,
         {

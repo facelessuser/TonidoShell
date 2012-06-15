@@ -31,10 +31,11 @@
 
 $PHPSHELL_startMsg = '';
 
-function PHPSHELL_init ($os, $clean = false) {
+function PHPSHELL_init ($os) {
     global $PHPSHELL_startMsg;
+    session_start();
     /* Initialize the session variables. */
-    if (empty($_SESSION['cwd']) || $clean) {
+    if (empty($_SESSION['cwd'])) {
         $_SESSION['input']   = '';
         $_SESSION['history'] = array();
         $_SESSION['output']  = $PHPSHELL_startMsg;
@@ -73,7 +74,7 @@ function PHPSHELL_init ($os, $clean = false) {
 /*Clear Session*/
 function PHPSHELL_killSession ($os) {
     session_destroy();
-    PHPSHELL_init($os, true);
+    PHPSHELL_init($os);
 }
 
 /*Get Session Variables*/

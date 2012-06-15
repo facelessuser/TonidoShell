@@ -66,7 +66,6 @@ $session  = isset($_POST['session']) ? $_POST['session']  : 0;
 $db       = $InstallDir . '/settings.sqlite';
 
 session_name('SESSION_NAMEID' . $session);
-session_start();
 define('PHPSHELL', true);
 define('PDOPLUS', true);
 include_once('phpshell/phpshell.php');
@@ -229,14 +228,14 @@ function editFile($file, $os) {
     return array($output, $returns);
 }
 
-/*Parse database if database has not been parsed yet in session*/
-if (empty($_SESSION['cwd']) || !file_exists($db)) {
-    parseDB($db);
-}
-
 /*Parse commands*/
 #$PHPSHELL_startMsg = "Tonido Shell session started...\n";
 PHPSHELL_init($TonidoOS);
+
+/*Parse database if database has not been parsed yet in session*/
+if (empty($_SESSION['database']) || !file_exists($db)) {
+    parseDB($db);
+}
 
 /*Initialize terminal values*/
 $terminal_input   = '';
@@ -246,7 +245,7 @@ $terminal_returns = '';
 /*Process command if one exists*/
 if (!empty($command)) {
     // Apply shellmarks
-    while (preg_match('|<\s*sm:\s*([A-Za-z0-9\-\_]+)\s*>|', $command, $matches)) {
+    while (preg_match('/<\s*sm:\s*([A-Za-z0-9\-\_]+)\s*>/', $command, $matches)) {
         if (isset($_SESSION['database']['shellmarks'][$matches[1]])) {
             $command = PHPSHELL_preg_replace_all('|<\s*sm:\s*' . $matches[1] . '\s*>|', $_SESSION['database']['shellmarks'][$matches[1]], $command);
         } else {
@@ -258,10 +257,11 @@ if (!empty($command)) {
     $command = PHPSHELL_parseCommand($command, $HostNames);
 
     /* Expand aliases */
-    $length = strcspn($command, " \t");
-    $token  = substr($command, 0, $length);
-    if (isset($_SESSION['database']['aliases'][$token]))
-        $command = $_SESSION['database']['aliases'][$token] . substr($command, $length);
+    if (preg_match('/^([A-Za-z0-9_]+)(\s+(?:.*)|)$/', $command, $matches)) {
+        if (isset($_SESSION['database']['aliases'][$matches[1]])) {
+            $command = $_SESSION['database']['aliases'][$matches[1]] . $matches[2];
+        }
+    }
 
     // Do TonidoShell specific things
     if ( $command === 'debug_throw_error') {

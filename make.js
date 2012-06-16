@@ -110,11 +110,8 @@ build.makeDirs(
     [
         'build/' + appName + '/background',
         'build/' + appName + '/modal/slideme',
-        'build/' + appName + '/sessionbar',
-        'build/' + appName + '/breadcrumbs',
         'build/' + appName + '/droppane',
         'build/' + appName + '/easyjs',
-        'build/' + appName + '/horizmenu',
         'build/' + appName + '/phpshell',
         'build/' + appName + '/tonidoshell',
         'build/' + appName + '/document'
@@ -142,14 +139,19 @@ build.lintJS(
     options.jslint
 );
 
-build.compileJS(sfu.glob('*.js', 'lib/modal/slideme'), 'build/' + appName + '/modal/slideme', {"debug": debug, "preferences": options.uglifyjs});
-build.compileJS(sfu.glob('*.js', 'lib/horizmenu'), 'build/' + appName + '/horizmenu', {"debug": debug, "preferences": options.uglifyjs});
-build.compileJS(sfu.glob('*.js', 'lib/breadcrumbs'), 'build/' + appName + '/breadcrumbs', {"debug": debug, "preferences": options.uglifyjs});
-build.compileJS(sfu.glob('*.js', 'lib/sessionbar'), 'build/' + appName + '/sessionbar', {"debug": debug, "preferences": options.uglifyjs});
+// Grab copyright from tonidoshell.js
+fs.writeFileSync('build/' + appName + '/tonidoshell/tonidoshell.js', build.preserveCopyright(fs.readFileSync('lib/tonidoshell/tonidoshell.js').toString('utf8')));
+// Concat JS files into tonidoshell.js
+build.compileJS(
+    sfu.glob('*.js', ['lib/horizmenu', 'lib/breadcrumbs', 'lib/sessionbar', 'lib/tonidoshell']),
+    function () {return 'build/' + appName + '/tonidoshell/tonidoshell.js';},
+    {"debug": debug, "preferences": options.uglifyjs, "append": true, "preserveCopyright": false}
+);
+// Other JS files
 build.compileJS(sfu.glob('*.js', 'lib/droppane'), 'build/' + appName + '/droppane', {"debug": debug, "preferences": options.uglifyjs});
 build.compileJS(sfu.glob('*.js', 'lib/easyjs'), 'build/' + appName + '/easyjs', {"debug": debug, "preferences": options.uglifyjs});
-build.compileJS(sfu.glob('*.js', 'lib/tonidoshell'), 'build/' + appName + '/tonidoshell', {"debug": debug, "preferences": options.uglifyjs});
 build.compileJS(sfu.glob('*modal-*.js', 'lib/modal'), 'build/' + appName + '/modal', {"debug": debug, "preferences": options.uglifyjs});
+build.compileJS(sfu.glob('*.js', 'lib/modal/slideme'), 'build/' + appName + '/modal/slideme', {"debug": debug, "preferences": options.uglifyjs});
 build.compileJS(
     'lib/modal/modal.js',
     'build/' + appName + '/modal',
@@ -166,15 +168,6 @@ build.compileJS(
         "preferences": options.uglifyjs
     }
 );
-
-build.compileCSS(sfu.glob('*.css', 'lib/modal'), 'build/' + appName + '/modal', {"debug": debug, "preferences": options.cleancss});
-build.compileCSS(sfu.glob('*.css', 'lib/modal/slideme'), 'build/' + appName + '/modal/slideme', {"debug": debug, "preferences": options.cleancss});
-build.compileCSS(sfu.glob('*.css', 'lib/horizmenu'), 'build/' + appName + '/horizmenu', {"debug": debug, "preferences": options.cleancss});
-build.compileCSS(sfu.glob('*.css', 'lib/breadcrumbs'), 'build/' + appName + '/breadcrumbs', {"debug": debug, "preferences": options.cleancss});
-build.compileCSS(sfu.glob('*.css', 'lib/sessionbar'), 'build/' + appName + '/sessionbar', {"debug": debug, "preferences": options.cleancss});
-build.compileCSS(sfu.glob('*.css', 'lib/droppane'), 'build/' + appName + '/droppane', {"debug": debug, "preferences": options.cleancss});
-build.compileCSS(sfu.glob('*.css', 'lib/easyjs'), 'build/' + appName + '/easyjs', {"debug": debug, "preferences": options.cleancss});
-build.compileCSS(sfu.glob('*.css', 'lib/tonidoshell'), 'build/' + appName + '/tonidoshell', {"debug": debug, "preferences": options.cleancss});
 
 build.copyFiles(sfu.glob(['index.php', 'command.php'], 'lib/tonidoshell'), 'build/' + appName);
 build.copyFiles(sfu.glob(['pdoplus.php', 'dbdefaults.php'], 'lib/tonidoshell'), 'build/' + appName + '/tonidoshell');

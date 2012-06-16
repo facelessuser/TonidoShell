@@ -57,6 +57,7 @@
         "shadow"        : false,  // Tolerate re-define variables later in code e.g. `var x=1; x=2;`.
         "sub"           : false,  // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`.
         "supernew"      : false,  // Tolerate `new function () { ... };` and `new Object;`.
+        "multistr"      : true,   // Tolertate multi line strings
 
         //The Good Parts - Prohibit
         "bitwise"       : true,   // Prohibit bitwise operators (&, |, ^, etc.).
@@ -74,12 +75,10 @@
     },
 
     "cleancss" : {
-        "preserve_copyright": true,
         "data_uri": true
     },
 
     "uglifyjs" : {
-        "preserve_copyright": true,
         "strict_semicolons" : false,
         "mangle_options" : {
             "mangle"       : true,

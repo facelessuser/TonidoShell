@@ -24,12 +24,12 @@ var fs = require('fs'),
     path = require('path'),
     is = require('./lib/istype').is;
 
-function preserveCopyright(code) {
+exports.preserveCopyright = function (code) {
     var m = code.match(/^(\/\*[^\*]*\*+(?:[^\/\*][^\*]*\*+)*\/|\s*\/\/(?:[^\r\n])*)/);
     return ((m) ? m[0] + '\n' : '');
-}
+};
 
-function imagesToDataURI(code, base) {
+exports.imagesToDataURI = function (code, base) {
     return code.replace(
         /(url\()['"]?((?:[^\)]+?))['"]?(\))/g,
         function ($0, $1, $2, $3){
@@ -48,7 +48,7 @@ function imagesToDataURI(code, base) {
             return uri;
         }
     );
-}
+};
 
 exports.merge = function (obj, defaults) {
     var index;
@@ -112,47 +112,6 @@ exports.makeDirs = function (dirs) {
     });
 };
 
-exports.compileJS = function (files, dest, options) {
-    var jsp = require('uglify-js').parser,
-        pro = require('uglify-js').uglify;
-
-    options = exports.merge(options,
-        {
-            postProcessing : null,
-            debug : false,
-            preferences : {}
-        }
-    );
-
-    files = (is.array(files)) ? files : [files];
-    files.forEach( function (file) {
-        var results = '',
-            ast, code, destPath;
-        console.log('compressing JS: ' + file + '...');
-        code = fs.readFileSync(file, 'utf8');
-
-        if (options.preferences.preserve_copyright && !options.debug) {
-            results = preserveCopyright(code);
-        }
-
-        destPath = path.normalize((is.function(dest)) ? dest(path.basename(file)) : path.join(dest, path.basename(file)));
-
-        if (options.debug) {
-            fs.writeFileSync(destPath, code, 'utf8');
-        } else {
-            ast = jsp.parse(code, options.preferences.strict_semicolons);
-            ast = pro.ast_mangle(ast, options.preferences.mangle_options);
-            ast = pro.ast_squeeze(ast, options.preferences.squeeze_options);
-            results += pro.gen_code(ast, options.preferences.gen_options);
-            fs.writeFileSync(destPath, results, 'utf8');
-        }
-
-        if (options.postProcessing && is.function(options.postProcessing)) {
-            options.postProcessing(destPath);
-        }
-    });
-};
-
 exports.lintJS = function (files, options) {
     var jshint = require('jshint').JSHINT,
         file, out, error, errors, i;
@@ -178,10 +137,84 @@ exports.lintJS = function (files, options) {
     }
 };
 
+exports.compileJS = function(files, dest, options) {
+    var jsp = require('uglify-js').parser,
+        pro = require('uglify-js').uglify;
+
+    options = exports.merge(options,
+        {
+            preserve_copyright: true,
+            postProcessing : null,
+            debug : false,
+            preferences : {},
+            append: false,
+        }
+    );
+
+    files = (is.array(files)) ? files : [files];
+    files.forEach( function (file) {
+        var results = '',
+            ast, code, destPath, id;
+        console.log('compressing JS: ' + file + '...');
+        code = fs.readFileSync(file, 'utf8');
+
+        if (options.preserveCopyright && !options.debug) {
+            results = exports.preserveCopyright(code);
+        }
+
+        destPath = path.normalize((is.function(dest)) ? dest(path.basename(file)) : path.join(dest, path.basename(file)));
+
+        code = code.replace(/\/\*\s*INCLUDE_CSS\(\s*['"]([^'"]+)['"],\s*['"]([^'"]+)['"]\s*\)\s*\*\//g, function ($0, $1, $2) {
+            var cssResult = "$.require(\"" + $1 + "/" + $2 + "\", \"" +
+                (function (cssFile) {
+                    var cssPro = require('cssmin').cssmin;
+                    console.log('compressing CSS: ' + cssFile + '...');
+                    code = fs.readFileSync(cssFile, 'utf8');
+                    code = exports.imagesToDataURI(code, path.dirname(cssFile));
+                    if (options.debug) {
+                        return code.replace(/\r?\n/g, "\\n\\$&");
+                    } else {
+                        return cssPro(code);
+                    }
+                })(path.join(path.dirname(file), $2)) +
+                "\");";
+            return cssResult;
+        });
+
+        if (options.debug) {
+            if (options.append) {
+                id = fs.openSync(destPath, 'a');
+                fs.writeSync(id, code, null, 'utf8');
+                fs.closeSync(id);
+            } else {
+                fs.writeFileSync(destPath, code, 'utf8');
+            }
+        } else {
+            ast = jsp.parse(code, options.preferences.strict_semicolons);
+            ast = pro.ast_mangle(ast, options.preferences.mangle_options);
+            ast = pro.ast_squeeze(ast, options.preferences.squeeze_options);
+            results += pro.gen_code(ast, options.preferences.gen_options) + ';';
+            if (options.append) {
+                id = fs.openSync(destPath, 'a');
+                fs.writeSync(id, results, null, 'utf8');
+                fs.closeSync(id);
+            } else {
+                fs.writeFileSync(destPath, results, 'utf8');
+            }
+        }
+
+        if (options.postProcessing && is.function(options.postProcessing)) {
+            options.postProcessing(destPath);
+        }
+    });
+};
+
 exports.compileCSS = function (files, dest, options) {
     var pro = require('cssmin').cssmin;
     options = exports.merge(options,
         {
+            preserveCopyright: true,
+            append: false,
             postProcessing : null,
             debug : false,
             preferences : {}
@@ -191,25 +224,36 @@ exports.compileCSS = function (files, dest, options) {
     files = (is.array(files)) ? files : [files];
     files.forEach( function (file) {
         var results = '',
-            code, destPath;
+            code, destPath, id;
         console.log('compressing CSS: ' + file + '...');
         code = fs.readFileSync(file, 'utf8');
 
-        if (options.preferences.preserve_copyright && !options.debug) {
-            results = preserveCopyright(code);
+        if (options.preserveCopyright && !options.debug) {
+            results = exports.preserveCopyright(code);
         }
 
         if (options.preferences.data_uri) {
-            code = imagesToDataURI(code, path.dirname(file));
+            code = exports.imagesToDataURI(code, path.dirname(file));
         }
 
         destPath = (is.function(dest)) ? dest(path.basename(file)) : path.join(dest, path.basename(file));
-
         if (options.debug) {
-            fs.writeFileSync(destPath, code, 'utf8');
+            if (options.append) {
+                id = fs.openSync(destPath, 'a');
+                fs.writeSync(id, code, null, 'utf8');
+                fs.closeSync(id);
+            } else {
+                fs.writeFileSync(destPath, code, 'utf8');
+            }
         } else {
             results += pro(code);
-            fs.writeFileSync(destPath, results, 'utf8');
+            if (options.append) {
+                id = fs.openSync(destPath, 'a');
+                fs.writeSync(id, results, null, 'utf8');
+                fs.closeSync(id);
+            } else {
+                fs.writeFileSync(destPath, results, 'utf8');
+            }
         }
 
         if (options.postProcessing && is.function(options.postProcessing)) {

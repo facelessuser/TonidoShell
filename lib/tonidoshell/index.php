@@ -224,15 +224,9 @@ $db = null;
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!--meta name="viewport" content="initial-scale=1.0, width=device-width"-->
     <title>Tonido Shell</title>
-    <!--Load CSS that must be present right away; the rest is deferred-->
-    <link rel="stylesheet" href="horizmenu/horizmenu.css" type="text/css">
-    <link rel="stylesheet" href="breadcrumbs/breadcrumbs.css" type="text/css">
-    <link rel="stylesheet" href="sessionbar/sessionbar.css" type="text/css">
-    <link rel="stylesheet" href="droppane/droppane.css" type="text/css">
-    <link rel="stylesheet" href="modal/modal.css" type="text/css">
-    <link rel="stylesheet" href="tonidoshell/tonidoshell.css" type="text/css">
     <!--Load JS that must be present right away; the rest is deferred-->
     <script type="text/javascript" src="easyjs/easyjs.js"></script>
+    <script type="text/javascript" src="modal/modal.js"></script>
     <script type="text/javascript" src="tonidoshell/tonidoshell.js"></script>
     <script type="text/javascript">
         shortcutSettings  = {

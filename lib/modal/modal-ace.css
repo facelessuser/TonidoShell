@@ -21,10 +21,6 @@
     margin: 0px 10px;
 }
 
-.ace_modal_settings_button {
-    float:right;
-}
-
 .ace_settings_panel {
     margin: auto auto;
 }
@@ -35,4 +31,27 @@
 
 .ace_settings_option {
     text-align: left;
+}
+
+a.ace_modal_settings_button {
+    float:right;
+    display:block;
+    text-decoration:none;
+    outline:none;
+    height:32px;
+    width:32px;
+    border:none;
+    background: url(images/settings.png) no-repeat 0 0;
+}
+
+a.ace_modal_settings_button:hover {
+    background-position: 0 -32px;
+}
+
+a.ace_modal_settings_button.ace_modal_settings_button_selected {
+    background-position: 0 -64px;
+}
+
+a.ace_modal_settings_button.ace_modal_settings_button_selected:hover {
+    background-position: 0 -96px;
 }

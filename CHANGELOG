@@ -1,5 +1,14 @@
 Tonido Shell Changelog
 ======================
+2012-6-18 Isaac Muse (1.4.0 release) <isaacmuse@gmail.com>
+    -Add Ace Editor as default editor 
+     (can be disabled; does not work well in IE8 or if in IE9+ and embedded in Tonido UI)
+    -Move out some Tonido Shell specific stuff from PHP Shell 
+    -Merge alias/shellmark database with settings database
+    -Defer certain module loading until after page load
+    -Framework changes
+    -Internal structure changes to package
+
 2011-12-14 (1.3.2 release) Isaac Muse <isaacmuse@gmail.com>
     -Allow for ".." at the beginning of a folder or file
 

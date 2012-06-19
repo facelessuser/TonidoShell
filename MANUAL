@@ -1,4 +1,4 @@
-Tonido Shell User Manual 1.3.2
+Tonido Shell User Manual 1.4.0
 ==============================
 
 Introduction
@@ -12,6 +12,8 @@ with it to execute commands and return general shell info.  I have fixed a
 number of bugs in the PHP Shell core.  The Tonido Shell UI provides a pleasant
 user interface and provides access to downloading/uploading/editing files, and
 tweaking/enhancing the look and feel of the terminal.
+
+Tonido Shell can also be built with Ace Editor as the default text editor.
 
 If you find any bugs, you can post them in the forums at tonido.com/forum, or
 you can contact me directly by email <isaacmuse@gmail.com>.
@@ -145,8 +147,22 @@ Features
     Settings->Change Shortcuts.  You can change most of them.
 
 17. Disable/Enable Text Drop Shadows - If you do not like dropshadows on terminal
-    input and output, you can change it by goint to to Settings->Hide/Show Text Drop
-    Shadow in the menu.
+    input and output, you can change it by goint to to Settings->Hide/Show Text
+    Drop Shadow in the menu.
+
+18. Enable/Disable Ace Editor - If you need or want to disable Ace Editor (if
+    included) you can select Settings->Editor Settings->Disable Ace Editor.  If
+    you would like to enable it you can also select Settings->Editor Settings->
+    Disable Ace Editor.
+
+19. Edit Ace Default Preferences - If you would like to change the default
+    settings in the Ace Editor. You can access the default preference file by
+    selecting Settings->Editor Settings->Edit Ace Default Preferences.
+
+20. Backup/Restore Ace Default Preferences - If you want to back up current
+    default settings or restore previously backed up settings, you can use the
+    respective menu options Settings->Editor Settings->Backup Ace Default
+    Preferences and Settings->Editor Settings->Restore Ace Default Settings
 
 Internal Commands: command line usage
 =====================================

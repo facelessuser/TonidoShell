@@ -144,6 +144,7 @@ try {
         $db->setRecords('shellmarks', $shellmarks);
 
         $olddb = null;
+        $result = null;
         unlink($InstallDir . "/userconfig.sqlite");
     }
 

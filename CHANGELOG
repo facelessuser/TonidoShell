@@ -1,6 +1,6 @@
 Tonido Shell Changelog
 ======================
-2012-6-18 Isaac Muse (1.4.0 release) <isaacmuse@gmail.com>
+2012-6-23 (1.4.0 release) Isaac Muse <isaacmuse@gmail.com>
     -Add Ace Editor as default editor 
      (can be disabled; does not work well in IE8 or if in IE9+ and embedded in Tonido UI)
     -Move out some Tonido Shell specific stuff from PHP Shell 
